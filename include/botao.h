@@ -1,3 +1,5 @@
+//* botao.h
+
 #ifndef BOTAO_H
 #define BOTAO_H
 
@@ -7,12 +9,20 @@ class Botao
 {
 private:
     uint8_t _pinoBotao;
-    bool _estadoBotao;
+    bool _estadoAtualBotao = HIGH;
     bool _estadoAnteriorBotao = HIGH;
+    bool _pressionou = false;
+    bool _soltou = false;
+    uint32_t _ultimaMudanca_ms = 0;
+    uint32_t _tempoDebounce_ms = 20;
+    bool _estadoUltimaAcao = HIGH;
+    uint32_t tempoDecorrido();
+
 
 
 public:
     Botao(uint8_t pino); 
+    //~Botao(); //!metodo para fazer o desrtrutor, mas n e comum usar 
 
     void iniciar();
     void atualizar();
